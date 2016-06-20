@@ -1,0 +1,10 @@
+.x-scroller > .x-inner {
+    position: relative !important;
+    width: auto;
+    height: auto;
+
+    // So that if a width is set due to wide column set
+    // there is actual content to cause x scroll, and to
+    // allow subsequent calls to measure the full scrollWidth
+    min-height: 1px;
+}

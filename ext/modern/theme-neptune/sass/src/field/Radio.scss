@@ -1,0 +1,42 @@
+.#{$prefix}radiofield {
+    .#{$prefix}input {
+        height: $radiofield-checkbox-size;
+        width: $radiofield-checkbox-size;
+        line-height: $radiofield-checkbox-size;
+        font-size: $radiofield-checkbox-font-size;
+        color: $radiofield-checkbox-color;
+
+        @if $enable-big {
+            .#{$prefix}big & {
+                font-size: $radiofield-checkbox-font-size-big;
+            }
+        }
+
+        @include font-icon($radiofield-checkbox-icon);
+    }
+
+    .#{$prefix}field-body {
+        padding: $radiofield-body-padding;
+
+        @if $enable-big {
+            .#{$prefix}big {
+                padding: $radiofield-body-padding-big;
+            }
+        }
+    }
+}
+
+.#{$prefix}radiofield.#{$prefix}checkboxfield-checked .#{$prefix}input {
+    @include font-icon($radiofield-checked-checkbox-icon);
+    color: $radiofield-checked-checkbox-color;
+
+    &.#{$prefix}item-disabled {
+        color: $radiofield-disabled-checkbox-color;
+    }
+
+    @if $enable-big {
+        .#{$prefix}big & {
+            font-size: $radiofield-checkbox-font-size-big;
+        }
+    }
+}

@@ -1,0 +1,231 @@
+/**
+ * Creates a visual theme for a Toolbar.
+ *
+ * @param {string} $ui
+ * The name of the UI being created. Can not included spaces or special punctuation
+ * (used in CSS class names).
+ *
+ * @param {color} $background-color
+ * Toolbar background-color
+ *
+ * @param {string/list} $background-gradient
+ * Toolbar background-gradient. Can be either the name of a gradient defined by
+ * {@link Global_CSS#background-gradient} or a list of color stops.
+ *
+ * @param {color} $border-color
+ * Toolbar border-color
+ *
+ * @param {number/list} $border-width
+ * Toolbar border-width
+ *
+ * @param {number/list} $border-style
+ * Toolbar border-style
+ *
+ * @param {number/list} $padding
+ * Toolbar padding
+ *
+ * @param {number/list} $padding-big
+ * Toolbar padding in the {@link Global_CSS#$enable-big big} sizing scheme
+ *
+ * @param {number} $horizontal-spacing
+ * The space in between horizontally aligned Toolbar items
+ *
+ * @param {number} $horizontal-spacing-big
+ * The space in between horizontally aligned Toolbar items in the
+ * {@link Global_CSS#$enable-big big} sizing scheme
+ *
+ * @param {number} $vertical-spacing
+ * The space in between vertically aligned Toolbar items
+ *
+ * @param {number} $vertical-spacing-big
+ * The space in between vertically aligned Toolbar items in the
+ * {@link Global_CSS#$enable-big big} sizing scheme
+ *
+ * @param {color} $title-color
+ * Toolbar {@link Ext.Title Title} color
+ *
+ * @param {string/number} $title-font-weight
+ * Toolbar {@link Ext.Title Title} font-weight
+ *
+ * @param {number} $title-font-size
+ * Toolbar {@link Ext.Title Title} font-size
+ *
+ * @param {number} $title-font-size-big
+ * Toolbar {@link Ext.Title Title} font-size in the
+ * {@link Global_CSS#$enable-big big} sizing scheme
+ *
+ * @param {string} $title-font-family
+ * Toolbar {@link Ext.Title Title} font-family
+ *
+ * @member Ext.Button
+ */
+@mixin toolbar-ui(
+    $ui: null,
+    $color: null,
+    $background-color: null,
+    $background-gradient: null,
+
+    $border-color: null,
+    $border-width: null,
+    $border-style: null,
+
+    $shadow: null,
+
+    $z-index: null,
+
+    $padding: null,
+    $padding-big: null,
+    $horizontal-spacing: null,
+    $horizontal-spacing-big: null,
+    $vertical-spacing: null,
+    $vertical-spacing-big: null,
+
+    $height: null,
+
+    $title-color: null,
+    $title-font-weight: null,
+    $title-font-size: null,
+    $title-font-size-big: null,
+    $title-font-family: null
+
+) {
+    $ui-suffix: ui-suffix($ui);
+
+    @if $background-color != null {
+        @if $border-color == null {
+            $border-color: toolbar-border-color($background-color);
+        }
+
+        @if $title-color == null {
+            $title-color: toolbar-title-color($background-color);
+        }
+    }
+
+    .x-toolbar#{$ui-suffix} {
+        @include background-gradient($background-color, $background-gradient);
+        @include border($border-width, $border-style, $border-color);
+        padding: $padding;
+        color: $color;
+        height: $height;
+        box-shadow: $shadow;
+        z-index: $z-index;
+
+        @if $enable-big and ($padding-big != $padding) {
+            .x-big & {
+                padding: $padding-big;
+            }
+        }
+
+        @if $horizontal-spacing != null {
+            .x-toolbar-inner.x-horizontal > * {
+                margin-right: $horizontal-spacing;
+
+                @if $enable-big and ($horizontal-spacing-big != $horizontal-spacing) {
+                    .x-big & {
+                        margin-right: $horizontal-spacing-big;
+                    }
+                }
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        @if $vertical-spacing != null {
+            .x-vertical > * {
+                margin-bottom: $vertical-spacing;
+
+                @if $enable-big and ($vertical-spacing-big != $vertical-spacing) {
+                    .x-big & {
+                        margin-bottom: $vertical-spacing-big;
+                    }
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .x-title {
+            color: $title-color;
+            @include font(
+                $font-weight: $title-font-weight,
+                $font-size: $title-font-size,
+                $font-family: $title-font-family
+            );
+
+            @if $enable-big and ($title-font-size-big != $title-font-size) {
+                .x-big & {
+                    font-size: $title-font-size-big;
+                }
+            }
+        }
+    }
+}
+
+.x-toolbar.x-container > .x-body {
+    // This ensures that the default minimum height of a toolbar is identical to the height
+    // it would have if it contained a default-styled button
+    min-height: calc(#{vertical($button-padding) or $default-calc-value} + #{vertical($button-border-width) or $default-calc-value} + #{$button-line-height or $default-calc-value});
+
+    @if $enable-big {
+        .x-big & {
+            min-height: calc(#{vertical($button-padding-big) or $default-calc-value} + #{vertical($button-border-width) or $default-calc-value} + #{$button-line-height-big or $default-calc-value});
+        }
+    }
+}
+
+@include toolbar-ui(
+    $background-color: $toolbar-background-color,
+    $background-gradient: $toolbar-background-gradient,
+
+    $color: $toolbar-color,
+    $height: $toolbar-height,
+
+    $border-color: $toolbar-border-color,
+    $border-width: $toolbar-border-width,
+    $border-style: $toolbar-border-style,
+
+    $shadow: $toolbar-shadow,
+    $z-index: $toolbar-z-index,
+
+    $padding: $toolbar-padding,
+    $padding-big: $toolbar-padding-big,
+    $horizontal-spacing: $toolbar-horizontal-spacing,
+    $horizontal-spacing-big: $toolbar-horizontal-spacing-big,
+    $vertical-spacing: $toolbar-vertical-spacing,
+    $vertical-spacing-big: $toolbar-vertical-spacing-big,
+
+    $title-color: $toolbar-title-color,
+    $title-font-weight: $toolbar-title-font-weight,
+    $title-font-size: $toolbar-title-font-size,
+    $title-font-size-big: $toolbar-title-font-size-big,
+    $title-font-family: $toolbar-title-font-family
+);
+
+/**
+ * Creates a theme UI for toolbars.
+ *
+ *     // SCSS
+ *     @include sencha-toolbar-ui('sub', #58710D, 'glossy');
+ *
+ *     // JS
+ *     var myTb = new Ext.Toolbar({title: 'My Green Glossy Toolbar', ui: 'sub'})
+ *
+ * @param {string} $ui-label The name of the UI being created.
+ *   Can not included spaces or special punctuation (used in class names)
+ * @param {color} $color Base color for the UI.
+ * @param {string} $gradient: $toolbar-background-gradient Background gradient style for the UI.
+ *
+ * @member Ext.Button
+ * @deprecated 6.0 Use {@link #toolbar-ui} instead
+ */
+@mixin sencha-toolbar-ui($ui-label, $color, $gradient: $toolbar-background-gradient) {
+    @include toolbar-ui(
+        $ui: $ui-label,
+        $background-color: $color,
+        $background-gradient: $gradient
+    );
+}

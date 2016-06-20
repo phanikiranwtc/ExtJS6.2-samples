@@ -1,0 +1,15 @@
+.x-placeholderlabel {
+  .x-field-label {
+    -webkit-transition : opacity $placeholderlabel-opacity-time $placeholderlabel-opacity-easing, -webkit-transform $placeholderlabel-transition-time $placeholderlabel-transition-easing;
+    -webkit-transform  : translate(0, $placeholderlabel-transition-distance);
+    opacity            : 0;
+    padding            : $placeholderlabel-label-padding;
+  }
+
+  &.x-show-label {
+    .x-field-label {
+      -webkit-transform : translate(0, 0);
+      opacity           : 1;
+    }
+  }
+}

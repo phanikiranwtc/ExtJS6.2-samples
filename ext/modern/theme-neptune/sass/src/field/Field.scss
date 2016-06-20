@@ -1,0 +1,90 @@
+/**
+ * @class Ext.field.Field
+ */
+
+.#{$prefix}field {
+    background: $field-background-color;
+    padding: $field-padding;
+
+    &.#{$prefix}layout-auto-item,
+    &.#{$prefix}layout-vbox-item {
+        margin-bottom: $field-vertical-spacing;
+
+        @if $enable-big {
+            .#{$prefix}big & {
+                margin-bottom: $field-vertical-spacing-big;
+            }
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.#{$prefix}input {
+    color: $field-input-color;
+
+    .#{$prefix}empty {
+        .#{$prefix}input-el {
+            -webkit-text-fill-color: $field-input-empty-color;
+        }
+    }
+}
+
+.#{$prefix}field-focused {
+
+    .#{$prefix}field-label {
+        color: $field-label-focused-color;
+    }
+}
+
+.#{$prefix}field-label {
+    color: $field-label-color;
+    background-color: $field-label-background-color;
+
+    padding: $field-label-padding;
+    @include font($field-label-font-weight, $field-label-font-size, $field-label-line-height, $field-label-font-family);
+
+    @if $enable-big {
+        .#{$prefix}big & {
+            @if $field-label-padding-big != $field-label-padding {
+                padding: $field-label-padding-big;
+            }
+            @if $field-label-font-size-big != $field-label-font-size {
+                font-size: $field-label-font-size-big;
+            }
+            @if $field-label-line-height-big != $field-label-line-height {
+                line-height: $field-label-line-height-big;
+            }
+        }
+    }
+}
+
+.#{$prefix}field-required .#{$prefix}field-label:after {
+    @include font($field-required-indicator-font-weight, $field-required-indicator-font-size, $field-required-indicator-line-height, $field-required-indicator-font-family);
+    position: $field-required-indicator-position;
+    top: $field-required-indicator-top;
+    padding: $field-required-indicator-padding;
+}
+
+.#{$prefix}item-disabled {
+    .#{$prefix}field-label,
+    input,
+    .#{$prefix}input-el,
+    .#{$prefix}spinner-body,
+    select,
+    textarea,
+    .#{$prefix}field-clear-container {
+        color: $field-item-disabled-color;
+        pointer-events: none;
+    }
+}
+
+.#{$prefix}item-disabled .#{$prefix}field-label {
+    color: $field-label-disabled-color;
+}
+
+.#{$prefix}item-disabled .#{$prefix}field-label:after {
+    color: #666 !important;
+}

@@ -1,0 +1,24 @@
+/**
+ * @class Ext.field.Search
+ */
+
+.x-searchfield {
+    .x-input {
+        position: relative;
+
+        @include font-icon($fa-var-search 1.2em FontAwesome);
+
+        &:before {
+            color: $neutral-dark-color;
+            position: absolute;
+            top: 50%;
+            margin-top: -.6em;
+            left: .4em;
+            right: auto;
+        }
+
+        .x-input-el {
+            padding-left: 1.5em;
+        }
+    }
+}

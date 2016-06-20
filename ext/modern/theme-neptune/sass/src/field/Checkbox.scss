@@ -1,0 +1,42 @@
+.#{$prefix}checkboxfield {
+    .#{$prefix}input {
+        height: $checkboxfield-checkbox-size;
+        width: $checkboxfield-checkbox-size;
+        line-height: $checkboxfield-checkbox-size;
+        font-size: $checkboxfield-checkbox-font-size;
+        color: $checkboxfield-checkbox-color;
+
+        @if $enable-big {
+            .#{$prefix}big & {
+                font-size: $checkboxfield-checkbox-font-size-big;
+            }
+        }
+
+        @include font-icon($checkboxfield-checkbox-icon);
+    }
+
+    .#{$prefix}field-body {
+        padding: $checkboxfield-body-padding;
+
+        @if $enable-big {
+            .#{$prefix}big {
+                padding: $checkboxfield-body-padding-big;
+            }
+        }
+    }
+}
+
+.#{$prefix}checkboxfield-checked .#{$prefix}input {
+    @include font-icon($checkboxfield-checked-checkbox-icon);
+    color: $checkboxfield-checked-checkbox-color;
+
+    &.#{$prefix}item-disabled {
+        color: $checkboxfield-disabled-checkbox-color;
+    }
+
+    @if $enable-big {
+        .#{$prefix}big & {
+            font-size: $checkboxfield-checkbox-font-size-big;
+        }
+    }
+}

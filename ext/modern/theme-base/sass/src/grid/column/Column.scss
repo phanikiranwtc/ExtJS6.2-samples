@@ -1,0 +1,27 @@
+.x-grid-column {
+    .x-innerhtml {
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        display: flex;
+
+        // Vertically center text
+        justify-content: center;
+
+        // Boxes run downwards
+        flex-direction: column;
+    }
+}
+
+.x-grid-column,
+.x-grid-headergroup {
+    // prevents columns from being crushed in FF/IE11 when there is not enough space
+    // TODO: this should be a config of Ext.layout.FlexBox
+    flex-shrink: 0;
+}
+
+.x-grid-column-trigger {
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+}

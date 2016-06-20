@@ -1,0 +1,10 @@
+/**
+ * @class Ext.field.Slider
+ */
+
+.x-sliderfield {
+    border: $sliderfield-border;
+    .x-field-body {
+        padding: $sliderfield-padding;
+    }
+}

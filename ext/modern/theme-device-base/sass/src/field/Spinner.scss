@@ -1,0 +1,13 @@
+.x-spinnerfield-button-down:before {
+    content: '-'
+}
+.x-spinnerfield-button-up:before {
+    content: '+'
+}
+
+.x-spinnerfield {
+    .x-spinnerfield-button {
+        border: 1px solid #ccc !important;
+        background-color: #eee;
+    }
+}
